@@ -20,6 +20,8 @@
             pkgs.rustfmt
             pkgs.elmPackages.elm
             pkgs.elmPackages.elm-format
+            pkgs.bun
+            pkgs.typescript
           ];
         };
       });

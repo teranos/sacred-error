@@ -1,0 +1,19 @@
+{
+  "name": "sacred-error",
+  "version": "0.1.0",
+  "description": "One typed failure that crosses every layer, and draws itself at the cursor",
+  "license": "MIT",
+  "repository": "github:teranos/sacred-error",
+  "type": "module",
+  "exports": {
+    ".": "./src/error.ts",
+    "./element": "./src/element.ts"
+  },
+  "files": [
+    "src/error.ts",
+    "src/element.ts"
+  ],
+  "devDependencies": {
+    "happy-dom": "20.0.11"
+  }
+}

@@ -1,12 +1,17 @@
 # sacred-error
 
-One typed failure, in two languages, with one renderer.
+One typed failure, in three languages, with one renderer.
 
-`src/lib.rs` is a Rust crate. `src/Error.elm` is an Elm package. They are the
-same value: what serde writes, the Elm decoder reads, down to the spelling of
-a severity. The tests either side are the whole of the contract, and an
-unknown severity fails the decode rather than defaulting to something
-survivable.
+`src/lib.rs` is a Rust crate, `src/error.ts` a TypeScript module, and
+`src/Error.elm` an Elm package. They are the same value: what serde writes,
+the other two read, down to the spelling of a severity. The tests on each
+side are the whole of the contract, and an unknown severity fails the decode
+everywhere rather than defaulting to something survivable.
+
+`src/element.ts` is the render, as a custom element. A `<sacred-error>` mounts
+in Svelte, in Elm, and in a plain page, so a failure looks the same wherever
+it surfaces — which is the half of the axiom that a shared type alone does
+not buy.
 
 [`ERROR.md`](ERROR.md) is the axiom — what it forbids, what it requires, and
 what the render looks like, including where the overlay opens.
@@ -18,6 +23,10 @@ Rust:
     [dependencies.sacred-error]
     git = "https://github.com/teranos/sacred-error"
     rev = "..."
+
+TypeScript:
+
+    bun add github:teranos/sacred-error
 
 Elm:
 
@@ -44,6 +53,6 @@ on its way up; this is what it emits at the edge. They compose.
 
     nix develop
 
-Then `cargo test` and `elm make --docs=docs.json`. The second is Elm's own
-package validator and it is stricter than the compiler: every exposed value
-needs documentation, and the module needs to list all of them.
+Then `cargo test`, `bun test`, and `elm make --docs=docs.json`. The last is
+Elm's own package validator and it is stricter than the compiler: every
+exposed value needs documentation, and the module needs to list all of them.

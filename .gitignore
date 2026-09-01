@@ -5,6 +5,10 @@ target/
 elm-stuff/
 docs.json
 
+# happy-dom, for the element's test. package.json and bun.lock are committed;
+# what they resolve to is not.
+node_modules/
+
 # Finder's per-directory view state. Unanchored on purpose: it appears
 # wherever someone opens a folder.
 .DS_Store
