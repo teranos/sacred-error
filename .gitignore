@@ -1,0 +1,10 @@
+# Rust build output.
+target/
+
+# Elm's per-project dependency cache and build output.
+elm-stuff/
+docs.json
+
+# Finder's per-directory view state. Unanchored on purpose: it appears
+# wherever someone opens a folder.
+.DS_Store

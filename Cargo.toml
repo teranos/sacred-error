@@ -1,0 +1,27 @@
+[package]
+name = "sacred-error"
+version = "0.1.0"
+edition = "2021"
+description = "The Sacred Error primitive — one typed value that crosses every layer of the system unchanged."
+license = "MIT"
+repository = "https://github.com/teranos/sacred-error"
+
+# The Rust half of a two-language repository. `src/Error.elm` is the other,
+# and the tests here are what keeps the two agreeing.
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+# Range pin rather than exact, so a consumer pulling Bevy — which wants
+# serde >= 1.0.220 through its own transitives — can still resolve.
+serde = { version = "1.0.219", features = ["derive"] }
+
+[dev-dependencies]
+serde_json = "=1.0.140"
+
+[lints.rust]
+unsafe_code = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "deny", priority = -1 }
