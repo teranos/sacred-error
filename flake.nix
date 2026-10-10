@@ -1,5 +1,5 @@
 {
-  description = "The Sacred Error primitive — the same typed failure in Rust and in Elm.";
+  description = "The Sacred Error primitive — the same typed failure in Rust, TypeScript, Elm and Go.";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
@@ -10,10 +10,11 @@
         nixpkgs.lib.genAttrs systems (s: fn (import nixpkgs { system = s; }));
     in {
       devShells = eachSystem (pkgs: {
-        # Both halves, because a change to one is only correct if the other
-        # still agrees with it.
+        # Every half, because a change to one is only correct if the others
+        # still agree with it.
         default = pkgs.mkShell {
           packages = [
+            pkgs.go
             pkgs.cargo
             pkgs.rustc
             pkgs.clippy
