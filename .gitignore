@@ -12,3 +12,4 @@ node_modules/
 # Finder's per-directory view state. Unanchored on purpose: it appears
 # wherever someone opens a folder.
 .DS_Store
+.build/
