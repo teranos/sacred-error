@@ -1,0 +1,40 @@
+# The four halves are one value, and each one's tests pin the contract the
+# others write. A change is correct only when all four still agree, so all four
+# run on every push and every pull request.
+name: agree
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun test
+
+  elm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: jorelali/setup-elm@v6
+        with:
+          elm-version: 0.19.1
+      # Elm's own package validator, stricter than the compiler.
+      - run: elm make --docs=docs.json
+
+  swift:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: swift test
