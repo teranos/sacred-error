@@ -1,17 +1,17 @@
-// The Sacred Error, in Swift. `src/lib.rs` writes this shape, and `error.ts`
-// and `Error.elm` read it; this reads and writes it too, and the tests beside
-// it pin the same contract the other three pin. ERROR.md is the axiom.
+// 「[Opus 5.5] The Sacred Error, in Swift. `src/lib.rs` writes this shape, and `error.ts`」
+// 「[Opus 5.5] and `Error.elm` read it; this reads and writes it too, and the tests beside」
+// 「[Opus 5.5] it pin the same contract the other three pin. ERROR.md is the axiom.」
 
 import Foundation
 
-/// A closed set of four. An unknown label fails the decode, as it does in
-/// Rust, TypeScript and Elm: a failure that arrives mislabelled is worse than
-/// one that arrives loudly broken.
+/// 「[Opus 5.5] A closed set of four. An unknown label fails the decode, as it does in」
+/// 「[Opus 5.5] Rust, TypeScript and Elm: a failure that arrives mislabelled is worse than」
+/// 「[Opus 5.5] one that arrives loudly broken.」
 public enum Severity: String, Codable, Sendable, CaseIterable {
     case info, warn, error, panic
 }
 
-/// Where the cursor was when the failing action fired, when a touch fired it.
+/// 「[Opus 5.5] Where the cursor was when the failing action fired, when a touch fired it.」
 public struct Anchor: Codable, Equatable, Sendable {
     public var x: Double
     public var y: Double
@@ -22,7 +22,7 @@ public struct Anchor: Codable, Equatable, Sendable {
     }
 }
 
-/// Where it happened, which is what decides where it is drawn.
+/// 「[Opus 5.5] Where it happened, which is what decides where it is drawn.」
 public struct Context: Codable, Equatable, Sendable {
     public var surface: String
     public var region: String?
@@ -35,8 +35,8 @@ public struct Context: Codable, Equatable, Sendable {
     }
 }
 
-/// One failure, whole. It is an `Error` in Swift's sense too, so it is what
-/// is thrown: what crosses a boundary is this value, never its words.
+/// 「[Opus 5.5] One failure, whole. It is an `Error` in Swift's sense too, so it is what」
+/// 「[Opus 5.5] is thrown: what crosses a boundary is this value, never its words.」
 public struct SacredError: Error, Codable, Equatable, Sendable {
     public var id: String
     public var severity: Severity
@@ -75,7 +75,7 @@ public struct SacredError: Error, Codable, Equatable, Sendable {
         self.requiresReload = requiresReload
     }
 
-    // The wire's own spelling, which is serde's: snake_case, as lib.rs writes it.
+    // 「[Opus 5.5] The wire's own spelling, which is serde's: snake_case, as lib.rs writes it.」
     enum CodingKeys: String, CodingKey {
         case id, severity, context, title, why, trace, raw, at, source, location
         case ffiCall = "ffi_call"
@@ -102,7 +102,7 @@ public struct SacredError: Error, Codable, Equatable, Sendable {
         requiresReload = try c.decodeIfPresent(Bool.self, forKey: .requiresReload) ?? false
     }
 
-    // What lib.rs omits, this omits: an empty trace, an absent field, a false reload.
+    // 「[Opus 5.5] What lib.rs omits, this omits: an empty trace, an absent field, a false reload.」
     public func encode(to encoder: Encoder) throws {
         var c = encoder.container(keyedBy: CodingKeys.self)
         try c.encode(id, forKey: .id)
@@ -121,7 +121,7 @@ public struct SacredError: Error, Codable, Equatable, Sendable {
         if requiresReload { try c.encode(requiresReload, forKey: .requiresReload) }
     }
 
-    /// Stable identity, so one failure is one element wherever it is drawn.
+    /// 「[Opus 5.5] Stable identity, so one failure is one element wherever it is drawn.」
     public var key: String { id }
 }
 
