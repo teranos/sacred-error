@@ -58,8 +58,8 @@ on its way up; this is what it emits at the edge. They compose.
 
     nix develop
 
-Then `cargo test`, `bun test`, and `elm make --docs=docs.json`. `swift test`
-runs with Xcode's Swift, outside the nix shell. All four run in CI
-(`.github/workflows/agree.yml`). The last is
+「[Opus 5.5] Then `cargo test`, `bun test`, and `elm make --docs=docs.json`. `swift test`」
+「[Opus 5.5] runs with Xcode's Swift, outside the nix shell. All four run in CI」
+「[Opus 5.5] (`.github/workflows/agree.yml`). The last is」
 Elm's own package validator and it is stricter than the compiler: every
 exposed value needs documentation, and the module needs to list all of them.
