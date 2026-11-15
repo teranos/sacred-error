@@ -3,8 +3,8 @@ import XCTest
 
 @testable import SacredError
 
-// The same JSON lib.rs's round-trip test asserts against, byte for byte. If
-// Rust changes what it writes, this is what fails.
+// 「[Opus 5.5] The same JSON lib.rs's round-trip test asserts against, byte for byte. If」
+// 「[Opus 5.5] Rust changes what it writes, this is what fails.」
 private let fromRust = #"""
     {"id":"err-test-1","severity":"error","context":{"surface":"rust-ffi","region":"deckbuilder","anchor":{"x":100.0,"y":50.0}},"title":"deck preset rejected","why":"preset[2].cards is empty","trace":["build_preset_decks"],"raw":"{\"id\":\"x\",\"cards\":[]}","at":"1234us"}
     """#
@@ -63,8 +63,8 @@ final class WhatRustWritesThisReads: XCTestCase {
 }
 
 final class WhatItRefuses: XCTestCase {
-    // The axiom: an unknown severity fails rather than quietly becoming info.
-    // Rust refuses it, TypeScript refuses it, Elm refuses it, and so does this.
+    // 「[Opus 5.5] The axiom: an unknown severity fails rather than quietly becoming info.」
+    // 「[Opus 5.5] Rust refuses it, TypeScript refuses it, Elm refuses it, and so does this.」
     func testAnUnknownSeverityFails() {
         XCTAssertThrowsError(try decoded(fromRust.replacingOccurrences(of: #""error""#, with: #""critical""#)))
     }
