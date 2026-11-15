@@ -1,6 +1,6 @@
-# The four halves are one value, and each one's tests pin the contract the
-# others write. A change is correct only when all four still agree, so all four
-# run on every push and every pull request.
+# 「[Opus 5.5] The four halves are one value, and each one's tests pin the contract the」
+# 「[Opus 5.5] others write. A change is correct only when all four still agree, so all four」
+# 「[Opus 5.5] run on every push and every pull request.」
 name: agree
 
 on:
@@ -30,7 +30,7 @@ jobs:
       - uses: jorelali/setup-elm@v6
         with:
           elm-version: 0.19.1
-      # Elm's own package validator, stricter than the compiler.
+      # 「[Opus 5.5] Elm's own package validator, stricter than the compiler.」
       - run: elm make --docs=docs.json
 
   swift:
