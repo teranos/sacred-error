@@ -1,10 +1,11 @@
 # sacred-error
 
-One typed failure, in three languages, with one renderer.
+One typed failure, in four languages, with one renderer.
 
-`src/lib.rs` is a Rust crate, `src/error.ts` a TypeScript module, and
-`src/Error.elm` an Elm package. They are the same value: what serde writes,
-the other two read, down to the spelling of a severity. The tests on each
+`src/lib.rs` is a Rust crate, `src/error.ts` a TypeScript module,
+`src/Error.elm` an Elm package, and `Sources/SacredError` a Swift package.
+They are the same value: what serde writes, the other three read, down to
+the spelling of a severity. The tests on each
 side are the whole of the contract, and an unknown severity fails the decode
 everywhere rather than defaulting to something survivable.
 
@@ -27,6 +28,10 @@ Rust:
 TypeScript:
 
     bun add github:teranos/sacred-error
+
+Swift, in `Package.swift` or an XcodeGen `packages:` entry:
+
+    .package(url: "https://github.com/teranos/sacred-error", revision: "...")
 
 Elm:
 
@@ -53,6 +58,6 @@ on its way up; this is what it emits at the edge. They compose.
 
     nix develop
 
-Then `cargo test`, `bun test`, and `elm make --docs=docs.json`. The last is
+Then `cargo test`, `bun test`, `swift test`, and `elm make --docs=docs.json`. The last is
 Elm's own package validator and it is stricter than the compiler: every
 exposed value needs documentation, and the module needs to list all of them.
